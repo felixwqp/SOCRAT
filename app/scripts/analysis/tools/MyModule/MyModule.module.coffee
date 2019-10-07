@@ -13,9 +13,11 @@ module.exports = myModule = new Module
       'socrat_analysis_myModule_dataService': require 'scripts/analysis/tools/MyModule/MyModuleDataService.service.coffee'
       'socrat_analysis_myModule_myService': require 'scripts/analysis/tools/MyModule/MyModuleMyService.service.coffee'
       # 'socrat_analysis_myModule_algorithms': require 'scripts/analysis/tools/MyModule/MyModuleAlgorithms.service.coffee'
+
     controllers:
-      'myModuleMainCtrl': require 'scripts/analysis/tools/MyModule/MyModuleMainCtrl.ctrl.coffee'
       'myModuleSidebarCtrl': require 'scripts/analysis/tools/MyModule/MyModuleSidebarCtrl.ctrl.coffee'
+      'myModuleMainCtrl': require 'scripts/analysis/tools/MyModule/MyModuleMainCtrl.ctrl.coffee'
+     
     directives:
       'socratMyModuleViz': require 'scripts/analysis/tools/MyModule/MyModuleVizDir.directive.coffee'
   # module state config

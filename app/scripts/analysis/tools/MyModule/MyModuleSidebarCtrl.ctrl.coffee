@@ -4,16 +4,13 @@ BaseCtrl = require 'scripts/BaseClasses/BaseController.coffee'
 
 module.exports = class MyModuleSidebarCtrl extends BaseCtrl
   @inject 'socrat_analysis_myModule_dataService',
-    'socrat_analysis_myModule_msgService'
-    'socrat_analysis_myModule_algorithms'
+    'socrat_analysis_myModule_msgService',
     '$scope'
     '$timeout'
 
   initialize: -> 
     @dataService = @socrat_analysis_myModule_dataService
     @msgService = @socrat_analysis_myModule_msgService
-    @algorithmsService = @socrat_analysis_myModule_algorithms
-    @algorithms = @algorithmsService.getNames()
     @DATA_TYPES = @dataService.getDataTypes()
     # set up data and algorithm-agnostic controls
     @useLabels = off
@@ -29,6 +26,7 @@ module.exports = class MyModuleSidebarCtrl extends BaseCtrl
     @iterDelay = 750
 
     # dataset-specific
+    @newMessage = 'Nothing'
     @dataFrame = null
     @dataType = null
     @cols = []
@@ -40,12 +38,15 @@ module.exports = class MyModuleSidebarCtrl extends BaseCtrl
     @labelCol = null
 
     # choose first algorithm as default one
-    if @algorithms.length > 0
-      @selectedAlgorithm = @algorithms[0]
-      @updateAlgControls()
+    # if @algorithms.length > 0
+    #   @selectedAlgorithm = @algorithms[0]
+    #   @updateAlgControls()
 
     @dataService.getData().then (obj) =>
       if obj.dataFrame and obj.dataFrame.dataType? and obj.dataFrame.dataType is @DATA_TYPES.FLAT
+        console.log 'before data'
+        console.log obj.dataFrame
+        console.log 'this is data'
         if @dataType isnt obj.dataFrame.dataType
           # update local data type
           @dataType = obj.dataFrame.dataType
@@ -55,14 +56,18 @@ module.exports = class MyModuleSidebarCtrl extends BaseCtrl
         @dataFrame = obj.dataFrame
         # parse dataFrame
         @parseData obj.dataFrame
+        console.log 'MY sidebar getData'
+        console.log obj
+
+
       else
         # TODO: add processing for nested object
         console.log 'NESTED DATASET'
 
     @$timeout -> $('input[type=checkbox]').bootstrapSwitch()
 
-  updateAlgControls: () ->
-    @algParams = @algorithmsService.getParamsByName @selectedAlgorithm
+  # updateAlgControls: () ->
+  #   @algParams = @algorithmsService.getParamsByName @selectedAlgorithm
 
 
 
@@ -161,6 +166,13 @@ module.exports = class MyModuleSidebarCtrl extends BaseCtrl
 
   ## Data preparation methods
 
+  acquireData: () ->
+    @msgService.broadcast 'myModule:updateData', @dataFrame.data
+    @newMessage = "In My Module Sidebar Acquire Data"
+    console.log '@@@@@@@@@@@@@@'
+    console.log(@dataFrame.data)
+
+
   # get requested columns from data
   prepareData: () ->
     data = @dataFrame
@@ -178,7 +190,7 @@ module.exports = class MyModuleSidebarCtrl extends BaseCtrl
         labels = (row[labelColIdx] for row in data.data)
       else
         labels = null
-
+      
       data = (row.filter((el, idx) -> idx in chosenIdxs) for row in data.data)
 
       # re-check if possible to compute accuracy

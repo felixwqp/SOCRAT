@@ -1,9 +1,5 @@
 div(ng-controller="myModuleMainCtrl as mainArea")
   h4 {{mainArea.title}}
-    tr
-      th Label
-      th Accuracy
-    tr(ng-repeat="(label, acc) in mainArea.accs")
-      td {{mainArea.label}}
-      td {{mainArea.acc.toFixed(2)}}
+  h4 {{mainArea.receivedData}}
+  h5 Before Viz Module
     socrat-my-module-viz

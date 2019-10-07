@@ -1,5 +1,8 @@
 'use strict'
 
+#import * as tf from '@tensorflow/tfjs';
+
+
 BaseCtrl = require 'scripts/BaseClasses/BaseController.coffee'
 
 module.exports = class MyModuleMainCtrl extends BaseCtrl
@@ -24,6 +27,13 @@ module.exports = class MyModuleMainCtrl extends BaseCtrl
     @means = null
     @assignments = null
 
+
+    @receivedData = ""
+
+
+    @linearModel = tf.Sequential
+    @prediction = null
+
     @$scope.$on 'myModule:updateDataPoints', (event, data) =>
 #      @showresults = off if @showresults is on
       # safe enforce $scope.$digest to activate directive watchers
@@ -31,6 +41,16 @@ module.exports = class MyModuleMainCtrl extends BaseCtrl
 
     @$scope.$on 'myModule:updateDataType', (event, dataType) =>
       @dataType = dataType
+      
+    @$scope.$on 'myModule:updateData', (event, receivedData) =>
+      console.log(receivedData)
+      @receivedData = receivedData
+
+
+  train: () ->
+
+
+
 
   prettifyArrayOutput: (arr) ->
     if arr?

@@ -28,8 +28,8 @@ module.exports = class MyModuleVizDir extends BaseDirective
       meanLayer = graph.append('g')
       color = d3.scale.category10()
 
-      scope.$watch 'mainArea.dataPoints', (newDataPoints) =>
-        if newDataPoints
+      scope.$watch 'mainArea.receivedData', (data) =>
+        if data
           xDataPoints = (Number(row[0]) for row in newDataPoints)
           yDataPoints = (Number(row[1]) for row in newDataPoints)
           minXDataPoint = d3.min xDataPoints

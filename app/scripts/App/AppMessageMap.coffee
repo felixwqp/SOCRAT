@@ -146,6 +146,16 @@ module.exports = class AppMessageMap
         'app_analysis_dimReduction',
         'socrat_analysis_myModule'
       ]
+    ,
+      msgFrom: 'getData'
+      scopeFrom: ['socrat_analysis_myModule']
+      msgTo: 'get table'
+      scopeTo: ['app_analysis_database']
+    ,
+      msgFrom: 'take table'
+      scopeFrom: ['app_analysis_database']
+      msgTo: 'receiveData'
+      scopeTo: ['socrat_analysis_myModule']
     ]
 
   getMap: ->
