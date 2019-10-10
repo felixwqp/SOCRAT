@@ -56,14 +56,11 @@ module.exports = class AppModuleList
       require 'scripts/analysis/tools/PowerCalc/PowerCalc.module.coffee'
     ,
       require 'scripts/analysis/tools/Stats/Stats.module.coffee'
-<<<<<<< HEAD
     ,
       require 'scripts/analysis/tools/DimensionReduction/DimensionReduction.module.coffee'
     ,
      require 'scripts/analysis/tools/MyModule/MyModule.module.coffee'
-  
-=======
->>>>>>> upstream/master
+
     ]
   ]
 
