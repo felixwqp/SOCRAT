@@ -43,7 +43,11 @@ module.exports = class AppModuleList
     Tools: [
       require 'scripts/analysis/tools/DimReduction/DimReduction.module.coffee'
     ,
+      require 'scripts/analysis/tools/DimensionReduction/DimensionReduction.module.coffee'
+    ,
       require 'scripts/analysis/tools/Cluster/Cluster.module.coffee'
+    ,
+      require 'scripts/analysis/tools/Classification/Classification.module.coffee'
     ,
       require 'scripts/analysis/tools/Reliability/Reliability.module.coffee'
     ,
@@ -51,14 +55,15 @@ module.exports = class AppModuleList
     ,
       require 'scripts/analysis/tools/PowerCalc/PowerCalc.module.coffee'
     ,
-      require 'scripts/analysis/tools/Classification/Classification.module.coffee'
-    ,
       require 'scripts/analysis/tools/Stats/Stats.module.coffee'
+<<<<<<< HEAD
     ,
       require 'scripts/analysis/tools/DimensionReduction/DimensionReduction.module.coffee'
     ,
      require 'scripts/analysis/tools/MyModule/MyModule.module.coffee'
   
+=======
+>>>>>>> upstream/master
     ]
   ]
 
@@ -72,10 +77,10 @@ module.exports = class AppModuleList
   getAnalysisModules: ->
     @analysis
 
-  listAnalysisModules: ->
+  listAnalysisModules: (moduleList=@analysis) =>
     modules = []
-    for m in @analysis
-      m = if m instanceof Module then [m.id] else (v.map((e) -> e.id) for k, v of m)[0]
+    for m in moduleList
+      m = if m instanceof Module then [m.id] else @listAnalysisModules (v for k, v of m)[0]
       modules = modules.concat m
     modules
 
