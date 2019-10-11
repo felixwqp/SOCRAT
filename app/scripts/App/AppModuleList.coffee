@@ -39,6 +39,7 @@ module.exports = class AppModuleList
   ,
     require 'scripts/analysis/Charts/Charts.module.coffee'
   ,
+    
     Tools: [
       require 'scripts/analysis/tools/DimReduction/DimReduction.module.coffee'
     ,
@@ -55,6 +56,9 @@ module.exports = class AppModuleList
       require 'scripts/analysis/tools/PowerCalc/PowerCalc.module.coffee'
     ,
       require 'scripts/analysis/tools/Stats/Stats.module.coffee'
+    ,
+     require 'scripts/analysis/tools/MyModule/MyModule.module.coffee'
+  
     ]
   ]
 
