@@ -2,7 +2,7 @@
 
 BaseDirective = require 'scripts/BaseClasses/BaseDirective'
 
-module.exports = class ClusterVizDir extends BaseDirective
+module.exports = class SocratMyModuleDir extends BaseDirective
   @inject '$parse'
 
   initialize: ->

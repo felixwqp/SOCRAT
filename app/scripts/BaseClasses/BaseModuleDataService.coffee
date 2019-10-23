@@ -27,7 +27,10 @@ module.exports = class BaseModuleDataService extends BaseService
       @msgManager.publish outMsg, -> @msgManager.unsubscribe token, null, deferred
     else
       deferred.reject()
-
+    console.log 'get data'
+    console.log outMsg
+    console.log inMsg
+    console.log deferred
     deferred.promise
 
   post: (outMsg, inMsg, data) ->

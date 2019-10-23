@@ -54,7 +54,12 @@ module.exports = class ClusterSidebarCtrl extends BaseCtrl
         # make local copy of data
         @dataFrame = obj.dataFrame
         # parse dataFrame
+        console.log 'before parse'
+        console.log @dataFrame
         @parseData obj.dataFrame
+        console.log 'after parse'
+        console.log @dataFrame
+
       else
         # TODO: add processing for nested object
         console.log 'NESTED DATASET'
@@ -86,6 +91,10 @@ module.exports = class ClusterSidebarCtrl extends BaseCtrl
     @cols = data.header
     @numericalCols = (col for col, idx in @cols when data.types[idx] in ['integer', 'number'])
     @categoricalCols = (col for col, idx in @cols when data.types[idx] in ['string', 'integer'])
+    console.log 'update sidebar controls'
+    console.log @cols
+    console.log @numericalCols
+    console.log @categoricalCols
     # make sure number of unique labels is less than maximum number of clusters for visualization
     if @algParams.k
       [minK, ..., maxK] = @algParams.k
