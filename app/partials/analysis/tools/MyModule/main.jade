@@ -982,52 +982,37 @@ div(ng-controller="mymoduleMainCtrl as mainArea")
         // Output Column
         .column.output
           h4 Output
-          |       
           .metrics
             .output-stats.ui-percTrainData
               span Test loss
-              |           
               #loss-test.value
-            |         
             .output-stats.train
               span Training loss
-              |           
               #loss-train.value
-            |         
             #linechart
-          |       
           #heatmap
-          |       
           div(style='float:left;margin-top:20px')
             div(style='display:flex; align-items:center;')
               // Gradient color scale
               .label(style='width:105px; margin-right: 10px')
                 | Colors shows data, neuron and weight values.
-              |           
               svg#colormap(width='150', height='30')
                 defs
                   lineargradient#gradient(x1='0%', y1='100%', x2='100%', y2='100%')
                     stop(offset='0%', stop-color='#f59322', stop-opacity='1')
-                    |                 
                     stop(offset='50%', stop-color='#e8eaeb', stop-opacity='1')
-                    |                 
                     stop(offset='100%', stop-color='#0877bd', stop-opacity='1')
-                |             
                 g.core(transform='translate(3, 0)')
                   rect(width='144', height='10', style="fill: url('#gradient');")
-            |         
             br
-            |         
             div(style='display:flex;')
               label.ui-showTestData.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect(for='show-test-data')
                 input#show-test-data.mdl-checkbox__input(type='checkbox', checked='')
-                |             
                 span.mdl-checkbox__label.label Show test data
-              |           
               label.ui-discretize.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect(for='discretize')
                 input#discretize.mdl-checkbox__input(type='checkbox', checked='')
-                |             
                 span.mdl-checkbox__label.label Discretize output
+
       // More
       .more
         // <button class="mdl-button mdl-js-button mdl-button--icon"><i class="material-icons">keyboard_arrow_down</i></button>
